@@ -1,45 +1,51 @@
 package Airlines;
 
-public abstract class Airplane implements AirplaneInterface {
+public abstract class Airplane{
 	private String name;
-	private boolean status;
-	private int capacity;
 	private double fuelConsumption;
+	private double load;
+	private double maxCapacity;
 	
+	Airplane(){
+		this.setName("Some plane");
+	}
+	Airplane(String name, double fuelConsumption, double maxCapacity){
+		this.setName(name);
+		this.setFuelConsumption(fuelConsumption);
+		this.setMaxCapacity(maxCapacity);
+	}
 	
-	public double getFuelConsumption() {
-		return fuelConsumption;
-	}
-	public void setFuelConsumption(double fuelConsumption) {
-		this.fuelConsumption = fuelConsumption;
-	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public boolean isStatus() {
-		return status;
+	public double getFuelConsumption(){
+		return fuelConsumption;
 	}
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void setFuelConsumption(double fuelConsumption){
+		this.fuelConsumption = fuelConsumption;
 	}
-	public int getCapacity() {
-		return capacity;
+	public void setMaxCapacity(double maxCapacity){
+		this.maxCapacity = maxCapacity;
 	}
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
+	public double getMaxCapacity(){
+		return maxCapacity;
 	}
-	
-	public void takeOff()
-	{
-		System.out.println("The plane is flying");
+	public void setLoad(double load) {
+		if (load <= this.getMaxCapacity()) {
+			this.load = load;
+			System.out.println(this.getName() + " has loaded!");
+		}
+		else {
+			System.out.println(this.getName() + " overloaded!");
+		}
 	}
-	public void land()
-	{
-		System.out.println("The plan is landing");
+	public double getLoad() {
+		return load;
 	}
-	
-	
+	abstract void takeOff();
+	abstract void land();
+	abstract void fly();	
 }

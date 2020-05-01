@@ -1,6 +1,8 @@
 package Airlines;
 
-public class Airline implements AirlinesInterface{
+import java.util.ArrayList;
+
+public class Airline{
 	private String name;
 	private Airplane[] airplanes;
 	
@@ -20,28 +22,20 @@ public class Airline implements AirlinesInterface{
 		this.airplanes = airplanes;
 	}
 
-	Airline(String name, Airplane [] airplanes)
+	Airline(String name)
 	{
-		this.setAirplanes(airplanes);
 		this.setName(name);
 	}
-	public double calculateFuelExpense()
+	
+	
+	public ArrayList<Airplane> getEfficientAirplane(double fuelConsumption)
 	{
-		return 0;
-	}
-	public boolean canTransportCargo()
-	{
-		return false;
-	}
-	public Airplane[] getAirplanesByFuelConsumption(double fuelConsumption)
-	{
-		for (Airplane airplane : airplanes)
-		{
-			if (airplane.getFuelConsumption() <= fuelConsumption)
-			{
-			
+		ArrayList<Airplane> result = new ArrayList<Airplane>();
+		for (Airplane ap : airplanes) {
+			if (ap.getFuelConsumption() < fuelConsumption) {
+				result.add(ap);
 			}
 		}
-		return airplanes;
+		return result;
 	}
  }
